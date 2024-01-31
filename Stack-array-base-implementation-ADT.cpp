@@ -1,5 +1,5 @@
 #include<iostream>
-
+using namespace std;
 class Stack {
 private:
     int* data; // Pointer to dynamically allocated array
@@ -78,6 +78,24 @@ public:
             std::cout << data[i] << " "; // Output each element separated by space
         }
     }
+
+    void reverse()
+    {
+        Stack temp;
+
+        while (!this->empty())
+        {
+            temp.push(this->data[TOP]);
+            this->pop();
+        }
+
+        for (int i = 0; i <= temp.TOP; i++)
+        {
+            this->push(temp.data[i]);
+        }
+
+    }
+
 };
 
 int main() {
@@ -88,17 +106,25 @@ int main() {
     s.push(4);
     s.push(5);
     s.push(6);
-    std::cout << "\n\nTOP " << s.top() << " size " << s.Size() << std::endl;
-    s.display(); // Display elements of stack
 
+    s.display(); // Display elements of stack
+    std::cout << "\nTOP " << s.top() << " size " << s.Size() << std::endl;
+    cout << "----------------------------" << endl;
 
     s.pop(); // Pop an element from the stack
-    std::cout << "\nTOP " << s.top() << " size " << s.Size() << std::endl;
     s.display(); // Display elements of stack
+    std::cout << "\nTOP " << s.top() << " size " << s.Size() << std::endl;
+    cout << "----------------------------" << endl;
 
     Stack op;
     op.operator=(s); // Assign s to op using operator overloading
     op.display(); // Display elements of op stack
+    std::cout << "\nTOP " << s.top() << " size " << s.Size() << std::endl;
+    cout << "----------------------------" << endl;
+    op.reverse();
+    op.display(); 
+    std::cout << "\nTOP " << s.top() << " size " << s.Size() << std::endl;
+    cout << "----------------------------" << endl;
 
     return 0;
 }
